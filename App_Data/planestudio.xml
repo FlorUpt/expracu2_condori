@@ -1,0 +1,23 @@
+﻿
+<?xml version="1.0" encoding="utf-8"?>
+<planstudio>
+  <plan>
+    <codigo>2015053911</codigo>
+    <asignatura>Comunicacion1</asignatura>
+    <ht>3</ht>
+    <hp>2</hp>
+    <th>5</th>
+    <creditos>4</creditos>
+    <pre_requisito>ninguno</pre_requisito>
+  </plan>
+  <plan>
+    <codigo>1211</codigo>
+    <asignatura>matematica</asignatura>
+    <ht>12</ht>
+    <hp>12</hp>
+    <th>2</th>
+    <creditos>12</creditos>
+    <pre_requisito>si</pre_requisito>
+  </plan>
+</planstudio>
+

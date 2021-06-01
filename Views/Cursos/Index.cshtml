@@ -1,0 +1,93 @@
+﻿@model IEnumerable<EXPRAU2_CONDORI.Models.Plan>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+
+        <div>
+            <div>
+                <h1>Ejercicoo 2 plan</h1>
+                <br />
+                <br />
+                @using (Html.BeginForm("Index", "Cursos", FormMethod.Post))
+                {
+                    <label>Ingrese ermin de busqueda : </label>
+                    <input type="text" name="busqueda" /><br />
+                    <label>Cdoigo</label>
+                    <input type="radio" name="criterio" value="codigo" /><br />
+                    <label>asignatura</label>
+                    <input type="radio" name="criterio" value="asignatura" />
+
+                    <input type="submit" name="Buscar" class="btn btn-success" value="Buscar" />
+                }
+
+                <a href="~/Ejercicio2/Crear" class="btn btn-primary">Agregar</a>
+                <br />
+                <br />
+                <table border="1" class="table">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Asignatura</th>
+                        <th>Ht</th>
+                        <th>Hp</th>
+                        <th>Th</th>
+                        <th>Creditos</th>
+                        <th>Pre-requisto</th>
+                        <th>Acccion</th>
+                    </tr>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => c.codigo)</td>
+                            <td>@Html.DisplayFor(modelItem => c.asignatura)</td>
+                            <td>@Html.DisplayFor(modelItem => c.ht)</td>
+                            <td>@Html.DisplayFor(modelItem => c.hp)</td>
+                            <td>@Html.DisplayFor(modelItem => c.th)</td>
+                            <td>@Html.DisplayFor(modelItem => c.creditos)</td>
+                            <td>@Html.DisplayFor(modelItem => c.pre_requisito)</td>
+
+                            <td> <button type="button" id="btelimar" class="btn btn-danger" onclick="Elimnar('@c.codigo')">Eliminar</button></td>
+                            <td>  <a href="~/Ejercicio2/Editar/?codigo=@c.codigo" class="btn btn-primary">Editar</a> </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script>
+
+
+    function Elimnar(codigo) {
+        var data = {codigo:codigo}
+        $.ajax({
+            url: '/Cursos/Eliminar/',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+
+                location.href = "/Cursos/Index";
+            },
+            error: function (err) {
+
+                console.log(err);
+            }
+        })
+    }
+</script>
